@@ -79,7 +79,7 @@ def login():
     return render_template("login.html")
 
 @login_manager.user_loader
-def load_user(user_id):
+def load_user(user_id, doc = []):
     user_data = users.find_one({"_id": ObjectId(user_id)})
     return User(user_data) if user_data else None
 
@@ -99,7 +99,21 @@ def add_delete():
 
 @app.route('/search', methods=['GET'])
 def search():
-    return render_template('search.html')
+    query = request.args.get('q', '')
+    results = []
+    if query:
+        try:
+            results_cursor = mongo.db.recipes.find({
+                "$text": {"$search": query},
+                "user_id": str(current_user.id)
+            })
+            for recipe in results_cursor:
+                recipe['_id'] = str(recipe['_id'])
+                results.append(recipe)
+        except Exception as e:
+            error = f"An error occurred: {e}"
+    return render_template('search.html', results=results, doc=[])
+
 
 @app.route('/edit')
 def edit():

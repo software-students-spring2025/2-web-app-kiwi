@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block title %}Search Recipes{% endblock %}
+
+{% block content %}
+  <h1>Search Recipes</h1>
+  <form action="{{ url_for('search') }}" method="GET">
+    <input type="text" name="q" placeholder="Search" value="{{ request.args.get('q', '') }}">
+    <button type="submit">Search</button>
+  </form>
+
+  {% if results is defined %}
+    <h2>Results</h2>
+    <ul>
+      {% for recipe in results %}
+        <li>
+          <strong>{{ recipe.title }}</strong>
+          <p>{{ recipe.instructions }}</p>
+        </li>
+      {% else %}
+        <li>No recipes found.</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

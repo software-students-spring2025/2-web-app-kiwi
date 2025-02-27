@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <title>{% block title %}Recipes{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
 </head>
 <body>
     {% if current_user.is_authenticated %}
@@ -31,9 +31,13 @@
             {% endif %}
         </ul>
         <ul>
-            {% for item in doc %}
-                <li>{{ item.title }}</li>
-            {% endfor %}
+            <!--
+            <ul>
+                {% for item in doc %}
+                    <li>{{ item.title }}</li>
+                {% endfor %}
+            </ul>
+            -->
         </ul>
     </nav>
 
