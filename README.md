@@ -8,7 +8,7 @@ Our web application empowers users to effortlessly create, store, and manage the
 
 ## User stories
 
-https://github.com/software-students-spring2025/2-web-app-kiwi/issues
+[User Stories](https://github.com/software-students-spring2025/2-web-app-kiwi/issues)
 
 ## Steps necessary to run the software
 

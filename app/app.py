@@ -28,6 +28,7 @@ bcrypt = Bcrypt(app)
 mongo = pymongo.MongoClient(os.getenv("MONGO_URI"), ssl = True)
 db = mongo[os.getenv("MONGO_DBNAME")]
 users = db.users
+recipes = db.recipes
 
 #verify mongodb connection
 try:
@@ -93,9 +94,40 @@ def logout():
 def home():
     return render_template('index.html')
 
+@app.route('/your_recipes')
+@login_required
+def your_recipes():
+    return render_template('your_recipes.html', recipes=recipes)
+
+
 @app.route('/add_delete', methods=['GET', 'POST'])
 def add_delete():
-    return render_template('add_delete.html')
+    if request.method == "POST":
+        if request.form['action'] == 'add':
+            recipe_name = request.form['recipe_name']
+            ingredient_list = request.form['ingredient_list'].split(',')
+            cooking_supplies = request.form['cooking_supplies'].split(',')
+            instructions = request.form['instructions']
+
+            db.recipes.insert_one({
+                'recipe_name': recipe_name,
+                'ingredient_list': ingredient_list,
+                'cooking_supplies': cooking_supplies,
+                'instructions': instructions
+            })
+
+            return redirect(url_for('add_delete'))
+            
+        elif request.form['action'] == 'delete':
+            recipe_id = request.form['recipe_id']
+            db.recipes.delete_one({
+                '_id': ObjectId(recipe_id)
+            })
+
+            return redirect(url_for('add_delete'))
+
+    recipes = db.recipes.find()
+    return render_template('add_delete.html', recipes=recipes)
 
 @app.route('/search', methods=['GET'])
 def search():

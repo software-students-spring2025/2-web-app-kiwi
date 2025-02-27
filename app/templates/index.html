@@ -1,15 +1,21 @@
 <html lang="en">
+
 <head>
     <title>{% block title %}Recipes{% endblock %}</title>
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
 </head>
+
 <body>
+    {% if current_user.is_authenticated %}
+    <h2 class="welcome-text">Welcome, {{ current_user.username }}!</h2>
+    {% endif %}
     {% if current_user.is_authenticated %}
     <!-- Top directory/navigation bar shown only for authenticated users -->
     <header>
         <nav class="top-nav">
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('your_recipes') }}">Your Recipes</a></li>
                 <li><a href="{{ url_for('search') }}">Search</a></li>
                 <li><a href="{{ url_for('edit') }}">Edit Recipe</a></li>
                 <li><a href="{{ url_for('add_delete') }}">Add & Delete</a></li>
@@ -17,17 +23,13 @@
         </nav>
     </header>
     {% endif %}
-
-    {% if current_user.is_authenticated %}
-        <h2 class="welcome-text">Welcome, {{ current_user.username }}!</h2>
-    {% endif %}
     <nav>
         <ul>
             {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
-                <li><a href="{{ url_for('login') }}">Login</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
         <ul>
@@ -45,4 +47,5 @@
         {% block content %}{% endblock %}
     </div>
 </body>
+
 </html>
