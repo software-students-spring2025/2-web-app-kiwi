@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h2>Editing recipe:</h2>
+    <form method="POST" action="{{url_for('edit_recipe', recipe_id=recipe['_id'])}}"> <!--wait which edit should this send to-->
+        <input type="hidden" name="action" value="edit_recipe">
+        <table>
+            <tr>
+                <td>        
+                    <label for="recipe_name">Recipe name:</label><br> 
+                </td>
+            </tr>
+            <tr>
+                <td>        
+                    <input type="text" id="recipe_name" name="recipe_name" value="{{ recipe['recipe_name'] }}" required><br>
+                </td>
+            </tr>
+            <tr>
+                <td>        
+                    <label for="ingredient_list">Ingredients (comma-seperated):</label><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="ingredient_list" name="ingredient_list" value="{{ recipe['cooking_supplies'] | join(", ") }}"required><br>
+                </td>
+            </tr>
+            <tr>
+                <td>        
+                    <label for="cooking_supplies">Cooking Supplies (comma-seperated):</label><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="cooking_supplies" name="cooking_supplies" value="{{ recipe['cooking_supplies'] | join(", ") }}" required><br>
+                </td>
+            </tr>
+            <tr>
+                <td>        
+                    <label for="instructions">Instructions:</label><br> 
+                </td>
+            </tr>
+            <tr>
+                <td>        
+                    <textarea id="instructions" name="instructions" required>{{ recipe['instructions'] }}</textarea><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="recipe_id" value="{{recipe['_id']}}">
+                    <input type="submit" value="Finish Editing">
+                </td>
+                <td>
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
