@@ -116,7 +116,6 @@ def add_delete():
                 'ingredient_list': ingredient_list,
                 'cooking_supplies': cooking_supplies,
                 'instructions': instructions
-                
             })
 
             return redirect(url_for('add_delete'))
@@ -136,21 +135,20 @@ def add_delete():
     return render_template('add_delete.html', recipes=recipes)
 
 @app.route('/search', methods=['GET'])
+@login_required
 def search():
     query = request.args.get('q', '')
     results = []
     if query:
-        try:
-            results_cursor = mongo.db.recipes.find({
-                "$text": {"$search": query},
-                "user_id": str(current_user.id)
-            })
-            for recipe in results_cursor:
-                recipe['_id'] = str(recipe['_id'])
-                results.append(recipe)
-        except Exception as e:
-            error = f"An error occurred: {e}"
-    return render_template('search.html', results=results, doc=[])
+        results_cursor = db.recipes.find({
+            "recipe_name": {"$regex": query, "$options": "i"},
+            "user_id": str(current_user.id)
+        })
+    else:
+        results_cursor = db.recipes.find({
+            "user_id": str(current_user.id)
+    })
+    return render_template('search.html', results=results_cursor, doc=[])
 
 
 @app.route('/edit', methods = ['GET', 'POST'])
@@ -163,7 +161,7 @@ def edit():
                 return redirect(url_for("edit_recipe", recipe_id=str(recipe_id)))
             else:
                 return "Recipe ID not found", 400
-    recipes = db.recipes.find({'author':current_user.id})
+    recipes = db.recipes.find({'user_id': current_user.id})
     return render_template('edit.html', recipes=recipes)
 
 @app.route('/edit/<string:recipe_id>', methods = ['GET', 'POST'])
