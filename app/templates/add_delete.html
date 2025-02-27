@@ -86,7 +86,7 @@
                     <td>{{ recipe['instructions'] }}</td>
                     
                     <td>
-                        <form method="POST" action="{{url_for('add_delete')}}">
+                        <form method="POST" action="{{url_for('add_delete', recipe_id=recipe._id)}}">
                             <input type="hidden" name="recipe_id" value="{{recipe['_id']}}">
                             <button type="submit" name="action" value="delete">Delete</button>
                         </form>
