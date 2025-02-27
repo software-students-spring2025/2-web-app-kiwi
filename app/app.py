@@ -153,9 +153,46 @@ def search():
     return render_template('search.html', results=results, doc=[])
 
 
-@app.route('/edit')
+@app.route('/edit', methods = ['GET', 'POST'])
 def edit():
-    return render_template('edit.html')
+    if request.method == 'POST':
+        if request.form.get('action') == 'edit':
+            recipe_id = request.form['recipe_id']
+            #error checking, prob get rid of later i shouldn't need
+            if recipe_id:
+                return redirect(url_for("edit_recipe", recipe_id=str(recipe_id)))
+            else:
+                return "Recipe ID not found", 400
+    recipes = db.recipes.find({'author':current_user.id})
+    return render_template('edit.html', recipes=recipes)
+
+@app.route('/edit/<string:recipe_id>', methods = ['GET', 'POST'])
+def edit_recipe(recipe_id):
+    if request.method=='POST':
+        recipe_id_obj = ObjectId(recipe_id)
+        recipe_name = request.form['recipe_name']
+        ingredient_list = request.form['ingredient_list'].split(",")  # convert to list
+        cooking_supplies = request.form['cooking_supplies'].split(",")  # convert to list
+        instructions = request.form['instructions']
+        db.recipes.update_one(
+            {'_id': recipe_id_obj},  
+            {'$set': {
+                'recipe_name': recipe_name,
+                'ingredient_list': ingredient_list,
+                'cooking_supplies': cooking_supplies,
+                'instructions': instructions
+            }}
+        )
+        return redirect(url_for("edit"))
+    recipe_id_obj = ObjectId(recipe_id)
+    to_edit = db.recipes.find_one({
+                '_id': recipe_id_obj
+            })
+    #error checking
+    if to_edit:
+        return render_template('edit_recipe.html', recipe=to_edit)
+    else:
+        return "Recipe not found", 404
 
 if __name__ == '__main__':
     app.run(debug=True)

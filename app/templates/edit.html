@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+
+{% block content %}
+    
+    <!-- add recipe -->
+    <h1>EDIT RECIPES</h1>
+
+     <h2>Edit an existing recipe:</h2>
+    
+    <!-- edit recipe -->
+    
+    <h2>Existing Recipes</h2>
+    <table border = "1">
+        <thead>
+            <tr>
+                <th>Recipe Name</th>
+                <th>Ingredients</th>
+                <th>Cooking Supplies</th>
+                <th>Instructions</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for recipe in recipes %}
+                <tr>
+                    <td>{{ recipe['recipe_name'] }}</td>
+                    <td>{{ recipe['ingredient_list'] | join(", ") }}</td>
+                    <td>{{ recipe['cooking_supplies'] | join(", ") }}</td>
+                    <td>{{ recipe['instructions'] }}</td>
+                    
+                    <td>
+                        <form method="GET" action="{{ url_for('edit_recipe', recipe_id=recipe['_id']) }}"> <!--potential mistake-->
+                            <input type="hidden" name="recipe_id" value="{{recipe['_id']}}">
+                            <button type="submit" name="action" value="edit">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+ {% endblock %}
