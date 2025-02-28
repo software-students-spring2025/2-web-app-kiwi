@@ -3,9 +3,7 @@
 {% block content %}
 <h1>Your Recipes</h1>
 
-{% if recipes|length == 0 %}
-<p>You haven't added any recipes yet.</p>
-{% else %}
+{% if recipes %}
 <table border="1">
     <thead>
         <tr>
@@ -26,5 +24,7 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>You haven't added any recipes yet.</p>
 {% endif %}
 {% endblock %}
