@@ -98,7 +98,8 @@ def home():
 @login_required
 def your_recipes():
     recipes = db.recipes.find({"user_id": current_user.id})
-    return render_template('your_recipes.html', recipes=recipes)
+    num_recipes = len(list(db.recipes.find({"user_id": current_user.id})))
+    return render_template('your_recipes.html', recipes=recipes, num_recipes=num_recipes)
 
 
 @app.route('/add_delete', methods=['GET', 'POST'])
