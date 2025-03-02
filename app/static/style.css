@@ -1,52 +1,47 @@
-.content {
+/* Only apply styles when on login or register pages */
+.auth-page .content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    /* Full viewport height */
 }
 
-/* Login container to properly structure title, form, and register link */
-.login-container {
+.auth-page .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    /* Distributes space evenly */
     background: #f9f9f9;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 350px;
-    /* Adjust width to fit form elements */
     min-height: 400px;
-    /* Ensures the box has enough space */
 }
 
-h1.login {
+.auth-page h1.login {
     margin-bottom: 20px;
 }
 
-form {
+.auth-page form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
-    /*padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);*/
+    align-items: center;
 }
 
-input {
+.auth-page input {
     margin: 10px 0;
     padding: 10px;
-    width: 250px;
+    width: 90%;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
+.auth-page button {
     padding: 10px;
-    width: 250px;
+    width: 90%;
     background-color: #007bff;
     color: white;
     border: none;
@@ -54,11 +49,10 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.auth-page button:hover {
     background-color: #0056b3;
 }
 
-/* Register link positioned at the bottom */
-p.login {
+.auth-page p.login {
     margin-top: 20px;
 }
