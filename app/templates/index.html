@@ -2,14 +2,12 @@
 
 <head>
     <title>{% block title %}Recipes{% endblock %}</title>
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     {% if current_user.is_authenticated %}
     <h2 class="welcome-text">Welcome, {{ current_user.username }}!</h2>
-    {% endif %}
-    {% if current_user.is_authenticated %}
     <!-- Top directory/navigation bar shown only for authenticated users -->
     <header>
         <nav class="top-nav">
@@ -28,8 +26,8 @@
             {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li class="login"><a href="{{ url_for('login') }}">Login</a></li>
+            <li class="register"><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
         <ul>
