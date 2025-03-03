@@ -34,4 +34,5 @@ _Note that if any files were edited, container must be stopped then restarted_
 
 ## Task boards
 
-[Task Board Link](https://github.com/orgs/software-students-spring2025/projects/50/)
+[Sprint 1 Task Board Link](https://github.com/orgs/software-students-spring2025/projects/50/)
+[Sprint 2 Task Board Link](https://github.com/orgs/software-students-spring2025/projects/69/)
