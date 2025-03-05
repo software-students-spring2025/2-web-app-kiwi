@@ -56,3 +56,44 @@
 .auth-page p.login {
     margin-top: 20px;
 }
+
+/* Base styles for all text */
+body {
+    font-size: 28px; /* Default size for larger screens */
+    line-height: 1.2; /* Improves readability */
+    font-family: Arial, sans-serif;
+}
+
+button, input, textarea {
+    font-size: 32px; /* Ensure form elements are easy to interact with */
+    width: 100%; /* Makes input fields stretch to fit the screen */
+    max-width: 400px; /* Prevents them from becoming too wide on desktops */
+    border: 1px solid #ccc;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+p, li {
+    font-size: 26px;
+}
+
+/* Ensure links and buttons are easy to tap */
+a, button {
+    padding: 10px;
+    display: inline-block;
+}
+
+/* Prevent text from being squished on small screens */
+.container {
+    max-width: 100%;
+    padding: 10px;
+}
+
+/* Make tables and other wide elements scrollable */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+

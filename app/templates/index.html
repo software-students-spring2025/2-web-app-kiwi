@@ -12,11 +12,11 @@
     <header>
         <nav class="top-nav">
             <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('your_recipes') }}">Your Recipes</a></li>
-                <li><a href="{{ url_for('search') }}">Search</a></li>
-                <li><a href="{{ url_for('edit') }}">Edit Recipe</a></li>
-                <li><a href="{{ url_for('add_delete') }}">Add & Delete</a></li>
+                <li class="directory"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="directory"><a href="{{ url_for('your_recipes') }}">Your Recipes</a></li>
+                <li class="directory"><a href="{{ url_for('search') }}">Search</a></li>
+                <li class="directory"><a href="{{ url_for('edit') }}">Edit Recipe</a></li>
+                <li class="directory"><a href="{{ url_for('add_delete') }}">Add & Delete</a></li>
             </ul>
         </nav>
     </header>
@@ -24,7 +24,7 @@
     <nav>
         <ul>
             {% if current_user.is_authenticated %}
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li class="directory"><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
             <li class="login"><a href="{{ url_for('login') }}">Login</a></li>
             <li class="register"><a href="{{ url_for('register') }}">Register</a></li>

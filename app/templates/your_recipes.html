@@ -4,6 +4,7 @@
 <h1>Your Recipes</h1>
 
 {% if num_recipes > 0 %}
+<div class="table-container">
 <table border="1">
     <thead>
         <tr>
@@ -24,6 +25,7 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 {% else %}
 <p>You haven't added any recipes yet.</p>
 {% endif %}
