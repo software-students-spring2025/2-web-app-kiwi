@@ -57,17 +57,26 @@
     margin-top: 20px;
 }
 
+/* END OF LOGIN AND REGSITER PAGE CSS*/
+
 /* Base styles for all text */
 body {
-    font-size: 28px; /* Default size for larger screens */
-    line-height: 1.2; /* Improves readability */
+    font-size: 28px;
+    /* Default size for larger screens */
+    line-height: 1.2;
+    /* Improves readability */
     font-family: Arial, sans-serif;
 }
 
-button, input, textarea {
-    font-size: 32px; /* Ensure form elements are easy to interact with */
-    width: 100%; /* Makes input fields stretch to fit the screen */
-    max-width: 400px; /* Prevents them from becoming too wide on desktops */
+button,
+input,
+textarea {
+    font-size: 32px;
+    /* Ensure form elements are easy to interact with */
+    width: 100%;
+    /* Makes input fields stretch to fit the screen */
+    max-width: 400px;
+    /* Prevents them from becoming too wide on desktops */
     border: 1px solid #ccc;
 }
 
@@ -75,12 +84,14 @@ h2 {
     font-size: 30px;
 }
 
-p, li {
+p,
+li {
     font-size: 26px;
 }
 
 /* Ensure links and buttons are easy to tap */
-a, button {
+a,
+button {
     padding: 10px;
     display: inline-block;
 }
@@ -97,3 +108,91 @@ a, button {
     overflow-x: auto;
 }
 
+/* MENU CSS*/
+
+/* Style for login and register links */
+
+nav {
+    display: flex;
+    justify-content: center;
+    /* Center align navigation */
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows wrapping if needed */
+    justify-content: center;
+    /* Center items horizontally */
+    align-items: center;
+    /* Align items vertically */
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    gap: 15px;
+    /* Ensures even spacing between buttons */
+}
+
+nav ul li {
+    display: inline-block;
+    /* Keep links aligned */
+}
+
+nav ul li a {
+    font-size: 75%;
+    /* Makes text 20% smaller */
+    text-decoration: none;
+    background-color: #007bff;
+    /* Blue background */
+    color: white;
+    padding: 12px 20px;
+    /* Padding for consistent button size */
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+    /* Set a fixed width for buttons */
+    transition: background 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+/* Mobile-friendly navigation */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        /* Stack nav items */
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        width: 100%;
+        gap: 10px;
+        /* Adds even spacing */
+    }
+
+    nav ul li a {
+        font-size: 100%;
+        /* Makes text 20% smaller */
+        text-decoration: none;
+        background-color: #007bff;
+        /* Blue background */
+        color: white;
+        padding: 12px 20px;
+        /* Padding for consistent button size */
+        border-radius: 8px;
+        font-weight: bold;
+        display: inline-block;
+        text-align: center;
+        width: 150px;
+        /* Set a fixed width for buttons */
+        transition: background 0.3s ease-in-out;
+    }
+}
